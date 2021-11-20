@@ -1,9 +1,6 @@
-// import { createStore } from 'redux';
-// import { composeWithDevTools } from 'redux-devtools-extension';
-// export const store = createStore(contactReducer, composeWithDevTools());
 import { combineReducers } from 'redux';
-import { contactList, contactFilter } from './contacts/reducers';
 import { configureStore } from '@reduxjs/toolkit';
+import { contactList, contactFilter } from './contacts/reducers';
 
 import logger from 'redux-logger';
 
@@ -27,10 +24,7 @@ const persistConfig = {
   blacklist: ['contactFilter'],
 };
 
-const contactReducer = combineReducers({
-  contactList,
-  contactFilter,
-});
+const contactReducer = combineReducers({ contactList, contactFilter });
 
 export const store = configureStore({
   reducer: {
