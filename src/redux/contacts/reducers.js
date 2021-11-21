@@ -1,17 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { addContact, fetchContacts, removeContact } from './operations';
+import { filterContacts } from './actions';
 // import dataContacts from '../../fileJson/contacts.json';
-import {
-  addContactsRequest,
-  addContactsSuccess,
-  addContactsError,
-  filterContacts,
-} from './actions';
+// import { createSlice } from '@reduxjs/toolkit';
 
 export const contactList = createReducer([], {
-  [addContactsRequest]: (state, { payload }) => [...state, payload],
-  [addContactsSuccess]: (state, { payload }) =>
+  [fetchContacts.fulfilled]: (_, { payload }) => payload,
+  [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+  [removeContact.fulfilled]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
-  [addContactsError]: (_, action) => action.payload,
 });
 
 export const contactFilter = createReducer('', {
@@ -19,15 +16,14 @@ export const contactFilter = createReducer('', {
 });
 
 // export const contacts = createReducer([], {
-//   [getContactsSuccess]: (state, action) => {
-//     return [...state, ...action.payload];
-//   },
+//   [addContactsSuccess]: (state, { payload }) =>
+//     state.filter(({ id }) => id !== payload),
 // });
 
 // export const loading = createReducer(false, {
-//   [getContactsRequest]: (_, action) => true,
+//   [addContactsRequest]: (state, { payload }) => [...state, payload],
 // });
 
 // export const error = createReducer(null, {
-//   [getContactsError]: (_, action) => action.payload,
+//   [addContactsError]: (_, { payload }) => payload,
 // });

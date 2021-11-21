@@ -24,12 +24,15 @@ const persistConfig = {
   blacklist: ['contactFilter'],
 };
 
-const contactReducer = combineReducers({ contactList, contactFilter });
+const contactReducer = combineReducers({
+  contactList,
+  contactFilter,
+});
+
+// const persistedContactsReducer = persistReducer(persistConfig, contactReducer);
 
 export const store = configureStore({
-  reducer: {
-    contacts: persistReducer(persistConfig, contactReducer),
-  },
+  reducer: { contacts: persistReducer(persistConfig, contactReducer) },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
