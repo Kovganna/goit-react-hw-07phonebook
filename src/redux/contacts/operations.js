@@ -9,7 +9,7 @@ export const addContact = createAsyncThunk(
     try {
       const { data } = await axios.post(`/contacts`, contact);
       return data;
-      // console.log(data);
+      
     } catch (error) {
       rejectWithValue(error.message);
     }
@@ -22,7 +22,7 @@ export const fetchContacts = createAsyncThunk(
     try {
       const { data } = await axios.get(`/contacts`);
       return data;
-      // console.log(data);
+      
     } catch (error) {
       rejectWithValue(error.message);
     }
